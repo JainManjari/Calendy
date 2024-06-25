@@ -1,0 +1,76 @@
+host / participant
+
+hosts has a free slot in a  day
+
+1 host - multiple paticipants 
+
+
+participant can raise the request for booking of free slot of the host
+
+host can accept and reject
+
+host : 9 - 12 Am
+
+part 1: 9-10 Am 
+
+part 2 => 9:15 to 9:30 Am =>
+
+// view free slots of an host by host1 api hostId 
+
+[{id, slot2},{id2, slot1}]
+
+
+// request a slot 
+/slot?slot_id&host_id
+
+{
+    succesful 
+} 
+
+{
+    "incorrect slot/unvailable"
+}
+
+
+// /slot/descision
+
+host_id
+slot_id
+descision: ACCEPT/reject
+
+{
+    "message:"successful of slot"
+}
+
+
+
+host -> bookslots [slots]
+
+
+participant
+id
+name
+email
+
+
+host 
+id
+name
+email
+
+
+slot_request
+id
+slot_id
+participant_id
+host_id
+status: PENDING/APPROVE/REJECT/ALREADY_BOOKED
+
+
+
+slot_for_hosts
+id
+time_start : '9'
+time_end 
+host_id
+status: BOOKED/AVAILABLE/
