@@ -1,8 +1,8 @@
-const Game = require('../models/game');
+const Player = require('../models/player');
 
 module.exports.home = async (req, res) => {
     try {
-        let games = await Game.find({});
+        console.log("home");
         console.log(req.body);
         console.log(req.query);
         console.log(req.params);

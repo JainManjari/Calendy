@@ -1,0 +1,54 @@
+        
+
+            let players = await Player.find({name:"Manjari"}).sort({name:-1}).limit(5);
+            let games = await Game.find({
+                    createdAt: {
+                        $gte: yesterday.toDate(),
+                        $lte: today.toDate(),
+                    },
+            });
+
+
+
+            let player1 = await Player.create(req.body);
+
+            const docs = [
+                { name: "cake", healthy: false },
+                { name: "lettuce", healthy: true },
+                { name: "donut", healthy: false }
+            ];
+            // this option prevents additional documents from being inserted if one fails
+            const options = { ordered: true };
+            const result = await Player.insertMany(docs, options);
+
+
+            const bulkOps = playerGameMappings.map((obj) => {
+                return {
+                    updateOne: {
+                        filter: {
+                            _id: obj._id,
+                        },
+                        update: {
+                            gameScores: obj.gameScores,
+                            totalGames: obj.totalGames,
+                            totalScore: obj.totalScore,
+                        },
+                    },
+                };
+            });
+
+            await PlayerGameMapping.bulkWrite(bulkOps);
+
+
+
+            var myquery = { address: 'Mountain 21' };
+            await Player.deleteOne(myquery);
+
+             let player = await Player.findOne({name:"Manjari"});
+            if(player) {
+                await Player.deleteOne({_id:player._id});
+            }
+
+
+
+    
