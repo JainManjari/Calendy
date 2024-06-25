@@ -51,4 +51,56 @@
 
 
 
+
+
+
+        let user = await User.findOne({});
+        let player = await Player.create({
+               user:user._id,
+               name:req.body.name,
+               email:req.body.email
+        })
+
+        console.log("user ",user, player);
+
+        let players = await Player.find({}).populate({
+            path:"user",
+            options:{
+                sort:"-createdAt"
+            },
+        });
+
+        let players = await Player.find({}).populate("user");
+
+        console.log(players);
+
+
+
+
+
+        // nested populating
+        let post=await Post.findById(req.query.id)
+            .populate("user")
+            .populate({
+                path:"comments",
+                options:{
+                    sort:"-createdAt"
+                },
+                
+                populate:
+                ({
+                    path:"likes",
+                    options:{
+                        sort:"-createdAt"
+                    },
+                    populate:{
+                        path:"user"
+                    },
+                }),  
+            })
+
+
+ 
+
+
     

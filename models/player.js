@@ -10,11 +10,15 @@ const playerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Player = mongoose.model("player", playerSchema);
+const Player = mongoose.model("Player", playerSchema);
 module.exports = Player;

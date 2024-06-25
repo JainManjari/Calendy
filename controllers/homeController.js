@@ -1,4 +1,5 @@
 const Player = require('../models/player');
+const User = require('../models/user');
 
 module.exports.home = async (req, res) => {
     try {
@@ -8,8 +9,7 @@ module.exports.home = async (req, res) => {
         console.log(req.params);
         console.log(JSON.stringify(req.headers));
         console.log(req.header("postman-token"));
-        return res.status(204).json({});
-
+        return res.status(200).json([]);
     } catch(err) {
         let message = `Error in executing home of homeController ${err}`;
         console.log(message);
